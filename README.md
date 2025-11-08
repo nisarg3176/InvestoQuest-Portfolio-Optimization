@@ -1,4 +1,4 @@
-\# InvestoQuest – Portfolio Optimization \& Management
+\ InvestoQuest – Portfolio Optimization \& Management
 
 
 
@@ -12,7 +12,7 @@ It includes \*\*Python-based analytics\*\*, \*\*transaction cost modeling\*\*, a
 
 
 
-\## Features
+\ Features
 
 \- Efficient Frontier Visualization (MPT)
 
@@ -28,7 +28,7 @@ It includes \*\*Python-based analytics\*\*, \*\*transaction cost modeling\*\*, a
 
 
 
-\## Methodology
+\ Methodology
 
 \- MPT optimization using covariance matrix
 
@@ -42,7 +42,7 @@ It includes \*\*Python-based analytics\*\*, \*\*transaction cost modeling\*\*, a
 
 
 
-\## Tech Stack
+\ Tech Stack
 
 \- Python (NumPy, Pandas, Matplotlib, SciPy, Riskfolio-Lib)
 
@@ -56,7 +56,7 @@ It includes \*\*Python-based analytics\*\*, \*\*transaction cost modeling\*\*, a
 
 
 
-\## Results
+\ Results
 
 \- Efficient Frontier visualization with maximum Sharpe ratio
 
@@ -70,7 +70,7 @@ It includes \*\*Python-based analytics\*\*, \*\*transaction cost modeling\*\*, a
 
 
 
-\## Report
+\ Report
 
 See full documentation in \[`FAC\_Report.pdf`](./FAC\_Report.pdf)
 
@@ -80,6 +80,6 @@ See full documentation in \[`FAC\_Report.pdf`](./FAC\_Report.pdf)
 
 
 
-\*\*Author:\*\* Nisarg Parashar  
+\Author:\ Nisarg Parashar  
 
-\*\*Institute:\*\* IIT Kanpur (Finance \& Analytics Club)
+\Institute:\ IIT Kanpur (Finance \& Analytics Club)
