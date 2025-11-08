@@ -12,7 +12,7 @@ It includes \*\*Python-based analytics\*\*, \*\*transaction cost modeling\*\*, a
 
 
 
-\## 🚀 Features
+\## Features
 
 \- Efficient Frontier Visualization (MPT)
 
