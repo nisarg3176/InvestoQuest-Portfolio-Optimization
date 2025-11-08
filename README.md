@@ -83,6 +83,3 @@ See full documentation in \[`FAC\_Report.pdf`](./FAC\_Report.pdf)
 \*\*Author:\*\* Nisarg Parashar  
 
 \*\*Institute:\*\* IIT Kanpur (Finance \& Analytics Club)
-
-
-
