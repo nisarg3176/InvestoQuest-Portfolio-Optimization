@@ -1,0 +1,72 @@
+{% extends 'optimizer/base.html' %}
+
+{% block title %}Login | PORTFOLIO PRO{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    
+    <div class="w-full max-w-md space-y-8 rounded-2xl bg-black/20 p-8 shadow-2xl backdrop-blur-lg border border-white/10">
+        
+        <div>
+            <div class="mx-auto h-12 w-12 text-indigo-400">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            </div>
+            <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-white">
+                Welcome Back
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-400">
+                Sign in to access your portfolio.
+            </p>
+        </div>
+        
+        <form class="mt-8 space-y-6" method="post">
+            {% csrf_token %}
+
+            {% if form.errors %}
+            <div class="bg-red-500/20 border border-red-500 text-red-300 px-4 py-3 rounded-lg relative" role="alert">
+                <strong class="font-bold">Login Failed!</strong>
+                <span class="block sm:inline"> Please check your username and password.</span>
+            </div>
+            {% endif %}
+            
+            <div class="space-y-4 rounded-md">
+                <div>
+                    <label for="id_username" class="sr-only">Username</label>
+                    <input id="id_username" name="username" type="text" autocomplete="username" required
+                        class="block w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-400 transition duration-300 ease-in-out focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400/50"
+                        placeholder="Username">
+                </div>
+
+                <div>
+                    <label for="id_password" class="sr-only">Password</label>
+                    <input id="id_password" name="password" type="password" autocomplete="current-password" required
+                         class="block w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-400 transition duration-300 ease-in-out focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400/50"
+                         placeholder="Password">
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <input id="remember-me" name="remember-me" type="checkbox"
+                        class="h-4 w-4 rounded border-gray-300/50 bg-white/10 text-indigo-500 focus:ring-indigo-500 focus:ring-offset-gray-900">
+                    <label for="remember-me" class="ml-2 block text-sm text-gray-300">Remember me</label>
+                </div>
+
+                <div class="text-sm">
+                    <a href="#" class="font-medium text-indigo-400 hover:text-indigo-300">Forgot your password?</a>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit"
+                    class="group relative flex w-full justify-center rounded-lg border border-transparent bg-gradient-to-r from-indigo-600 to-purple-600 py-3 px-4 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg hover:shadow-indigo-500/40 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-900">
+                    Sign In
+                </button>
+            </div>
+             <p class="mt-4 text-center text-xs text-gray-500">
+                (Hint: Use the admin account you created with `createsuperuser`)
+            </p>
+        </form>
+    </div>
+</div>
+{% endblock %}

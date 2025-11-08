@@ -1,0 +1,34 @@
+<!-- optimizer/templates/optimizer/contact_us.html -->
+{% extends 'optimizer/base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block header %}Get In Touch{% endblock %}
+
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-lg">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Contact Information</h2>
+            <p class="text-gray-600 mb-2">
+                <strong>Email:</strong> <a href="mailto:contact@portfolio-pro.com" class="text-indigo-600 hover:underline">contact@portfolio-pro.com</a>
+            </p>
+            <p class="text-gray-600 mb-2">
+                <strong>Phone:</strong> +91 98765 43210
+            </p>
+            <p class="text-gray-600">
+                <strong>Address:</strong> FAC Room, Hall 6
+            </p>
+        </div>
+        <div>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Business Hours</h2>
+            <p class="text-gray-600 mb-2">
+                Monday - Friday: 9:00 AM - 5:00 PM
+            </p>
+            <p class="text-gray-600">
+                Saturday - Sunday: Closed
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

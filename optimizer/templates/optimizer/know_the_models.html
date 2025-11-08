@@ -1,0 +1,150 @@
+{% extends 'optimizer/base.html' %}
+
+{% block title %}Know the Models | PORTFOLIO PRO{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="mb-10 text-center">
+    <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+        Understanding the Models
+    </h1>
+    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-300">
+        A detailed overview of the portfolio optimization models available in the application.
+    </p>
+</div>
+
+<div class="space-y-8">
+
+    <!-- Card 1: Mean-Variance Optimization -->
+    <div class="rounded-2xl border border-white/10 bg-black/20 p-8 backdrop-blur-lg">
+        <h2 class="text-3xl font-bold text-white mb-6 pb-4 border-b border-white/10">
+            Mean-Variance Optimization (MVO)
+        </h2>
+        <div class="prose prose-invert prose-lg max-w-none text-gray-300 prose-strong:text-white prose-headings:text-indigo-300">
+            <p>Mean-Variance Optimization, introduced by Harry Markowitz in 1952, is a foundational framework in modern portfolio theory. It constructs a portfolio that either:</p>
+            <ul>
+                <li>Minimizes risk for a given level of expected return</li>
+                <li>Maximizes expected return for a given level of risk</li>
+            </ul>
+
+            <h4>Mathematical Formulation</h4>
+            <p>Let:</p>
+            <ul>
+                <li>\( \mathbf{w} = [w_1, w_2, \dots, w_n]^\top \): portfolio weights</li>
+                <li>\( \boldsymbol{\mu} = [\mu_1, \mu_2, \dots, \mu_n]^\top \): expected asset returns</li>
+                <li>\( \Sigma \): covariance matrix of asset returns</li>
+            </ul>
+
+            <p>The portfolio's expected return is: \( \mathbb{E}[R_p] = \mathbf{w}^\top \boldsymbol{\mu} \)</p>
+            <p>The portfolio's variance (risk) is: \( \text{Var}(R_p) = \mathbf{w}^\top \Sigma \mathbf{w} \)</p>
+
+            <h4>Optimization Problem</h4>
+            <p>To minimize risk for a target return \( R_t \):</p>
+            <p><strong>Minimize:</strong> \( \mathbf{w}^\top \Sigma \mathbf{w} \)</p>
+            <p><strong>Subject to:</strong></p>
+            <ul>
+                <li>\( \mathbf{w}^\top \boldsymbol{\mu} = R_t \)</li>
+                <li>\( \mathbf{w}^\top \mathbf{1} = 1 \)</li>
+                <li>\( \mathbf{w} \geq 0 \) (no short-selling optional)</li>
+            </ul>
+            <p>This leads to a <strong>quadratic programming</strong> problem whose solutions form the <em>efficient frontier</em> — a set of optimal portfolios balancing risk and return.</p>
+        </div>
+    </div>
+
+    <!-- Card 2: Hierarchical Risk Parity (HRP) -->
+    <div class="rounded-2xl border border-white/10 bg-black/20 p-8 backdrop-blur-lg">
+        <h2 class="text-3xl font-bold text-white mb-6 pb-4 border-b border-white/10">
+            Hierarchical Risk Parity (HRP)
+        </h2>
+        <div class="prose prose-invert prose-lg max-w-none text-gray-300 prose-strong:text-white prose-headings:text-indigo-300">
+            <p>Hierarchical Risk Parity (HRP) is a clustering-based allocation method (López de Prado, 2016) that builds a hierarchical tree of assets and allocates capital by splitting clusters to balance risk — <em>without</em> inverting noisy covariance matrices.</p>
+            
+            <h4>Key Ideas / Intuition</h4>
+            <ul>
+                <li>Cluster assets by similarity (typically using correlation distance): assets that move together end up in the same branch.</li>
+                <li>Quasi-diagonalize the covariance matrix according to the cluster order so highly correlated assets are adjacent.</li>
+                <li>Recursively allocate capital between cluster halves inversely to their cluster variances (recursive bisection).</li>
+            </ul>
+            
+            <h4>Mathematical Sketch</h4>
+            <ul>
+                <li>Correlation → distance: \( d_{ij} = \sqrt{\tfrac{1}{2}(1 - \rho_{ij})} \).</li>
+                <li>Cluster assets with hierarchical linkage (e.g., single/ward) and obtain a leaf ordering \( \pi \).</li>
+                <li>Quasi-diagonalize covariance \( \Sigma_\pi \) and recursively split clusters. For a split into left (L) and right (R) subclusters, compute cluster variances \( \sigma_L^2, \sigma_R^2 \) (using equal-weight inside cluster) and set the weight share for the left cluster as \( \alpha = 1 - \dfrac{\sigma_L^2}{\sigma_L^2 + \sigma_R^2} \), then scale subcluster weights by \( \alpha \) and \(1-\alpha\) respectively.</li>
+            </ul>
+            
+            <h4>Practical Parameters</h4>
+            <ul>
+                <li><strong>Rolling covariance window</strong>: compute covariance using only the last <em>W</em> observations (e.g. 30 days) to avoid look-ahead and keep weights adaptive.</li>
+                <li><strong>Stop-loss rebalancing</strong>: when the portfolio value falls >5% from the most recent peak, recompute weights using the last W returns and rebalance to the new target.</li>
+                <li><strong>Clustering method</strong>: linkage = single/ward/complete (choice affects tree shape).</li>
+            </ul>
+            
+            <h4>Advantages</h4>
+            <ul>
+                <li>Robust to noisy covariance estimates — no matrix inversion required.</li>
+                <li>Natural diversification by penalizing correlated groups rather than individual assets only.</li>
+                <li>Scales to moderate asset universes and produces intuitive allocations.</li>
+            </ul>
+            
+            <h4>Limitations & Caveats</h4>
+            <ul>
+                <li>Depends on the clustering choice and distance metric — different linkage methods can produce different allocations.</li>
+                <li>Like any data-driven method, HRP can overfit if the rolling window is too short; conversely, too long a window reduces adaptivity.</li>
+                <li>Rebalancing triggers (stop-loss) and transaction costs should be modeled in practice.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Card 3: Hierarchical Equal Risk Contribution (HERC) -->
+    <div class="rounded-2xl border border-white/10 bg-black/20 p-8 backdrop-blur-lg">
+        <h2 class="text-3xl font-bold text-white mb-6 pb-4 border-b border-white/10">
+            Hierarchical Equal Risk Contribution (HERC)
+        </h2>
+        <div class="prose prose-invert prose-lg max-w-none text-gray-300 prose-strong:text-white prose-headings:text-indigo-300">
+            <p>HERC extends the hierarchical idea to target equal risk contributions within clusters (an “equal risk contribution” style allocator applied hierarchically). It aims to blend the interpretability of clustering with the risk-equalizing objective of ERC methods.</p>
+            
+            <h4>Key Ideas / Intuition</h4>
+            <ul>
+                <li>Build the same hierarchical clustering tree as HRP.</li>
+                <li>Within each subcluster allocate weights so that members contribute equally to the subcluster variance (an inverse-vol or ERC solve inside the cluster).</li>
+                <li>Combine the cluster-level allocations top-down so each cluster’s total risk contribution is balanced across the tree.</li>
+            </ul>
+            
+            <h4>Mathematical Sketch</h4>
+            <ul>
+                <li>Within a cluster \(C\) with covariance \( \Sigma_C \), HERC finds weights \( w_C \) such that each asset’s marginal contribution to variance is (approximately) equal within \(C\).</li>
+                <li>At the next tree level, scale cluster-level weights so sibling clusters contribute in proportion to a chosen rule (e.g., equal cluster risk or inverse cluster variance).</li>
+                <li>Because an exact ERC solve can be numerically heavier, practical HERC implementations often use inverse-vol proxies inside small clusters and then normalize.</li>
+            </ul>
+            
+            <h4>Practical Parameters</h4>
+            <ul>
+                <li><strong>Rolling covariance window</strong>: use the last W observations (e.g. 30 days) when computing each cluster covariance to avoid look-ahead.</li>
+                <li><strong>Stop-loss rebalancing</strong>: recompute HERC weights at each stop-loss rebalance using the last W returns.</li>
+                <li><strong>Cluster solver</strong>: exact ERC vs inverse-vol heuristic (tradeoff: accuracy vs CPU).</li>
+            </ul>
+            
+            <h4>Advantages</h4>
+            <ul>
+                <li>Tends to produce portfolios where risk is more evenly spread across assets and clusters.</li>
+                <li>Maintains hierarchical diversification while enforcing an explicit risk contribution target.</li>
+            </ul>
+            
+            <h4>Limitations & Caveats</h4>
+            <ul>
+                <li>Exact ERC solves require iterative solvers — may be slower for many frequent rebalances.</li>
+                <li>Using proxies (inverse-vol) is faster but approximate.</li>
+                <li>As with HRP, tuning the rolling window & rebalance rules materially affects results; include transaction costs in production.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- Add the Tailwind Typography CDN for prose styling -->
+{% block scripts %}
+{{ block.super }}
+<!-- The typography plugin is enabled via the URL parameter, no extra config script is needed. -->
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+{% endblock %}

@@ -1,0 +1,228 @@
+<!-- optimizer/templates/optimizer/about_us.html -->
+
+{% extends 'optimizer/base.html' %}
+{% load static %}
+{% block title %}About Us{% endblock %}
+
+{% block header %}About Our Project and Team{% endblock %}
+
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-lg prose lg:prose-xl max-w-5xl mx-auto">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">Project Objective</h2>
+    <p class="text-gray-700 leading-relaxed">
+        Portfolio Pro is an intuitive, research-backed web platform built to assist users in optimizing their investment
+        portfolios based on modern financial theories and real-time data analytics. We assign weights for various assets based on various techniques like HRP, HERC, etc. 
+        Our objective is to bridge the gap between financial theory and practical decision-making by empowering users
+        with easy-to-use tools for portfolio optimization.
+        Whether you're a student learning about markets or an investor looking to experiment with strategies, Portfolio
+        Pro provides the insights and infrastructure to help you grow confidently.
+    </p>
+
+    <hr class="my-10">
+
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Our Mentors</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-10">
+
+        <!-- Mentor 1 -->
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Harshvardhan_Gaur.jpeg' %}" alt="Harshvardhan Gaur"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">It’s not always about making the most money—it’s about making decisions you won’t regret later.</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Harshvardhan Gaur</h3>
+        </div>
+
+        <!-- Mentor 3 -->
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Ayush_Omer.png' %}" alt="Ayush Omer" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">Loren Ipsum</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Ayush Omer</h3>
+        </div>
+    </div>
+
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Our Mentees</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Aniket_Sethi.jpg' %}" alt="Aniket Sethi"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">Loren Ipsum</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Aniket Sethi</h3>
+        </div>
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Ankit_Kumar_Jha.jpg' %}" alt="Ankit Kumar Jha"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">Hanging by the last buck</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Ankit Kumar Jha</h3>
+        </div>
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Buddha_Bhusan.png' %}" alt="Buddha Bhusan"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">Options are a bet and trading it is gambling. And I am a GAMBLER</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Buddha Bhusan</h3>
+        </div>
+        <!-- Mentee 1 -->
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Kanishk_Sharma.png' %}" alt="Kanishk Sharma"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">99% gamblers quit before winning</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Kanishk Sharma</h3>
+        </div>
+
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Kuldip_Manvar.jpeg' %}" alt="Kuldip Manvar"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">#MoneyFreak</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Kuldip Manvar</h3>
+        </div>
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Kuldip_Manvar.jpeg' %}" alt="Kuldip Manvar"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">#MoneyFreak</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Kuldip Manvar</h3>
+        </div>
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Madhavi.jpeg' %}" alt="Madhavi"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">Loren Ipsum</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Madhavi</h3>
+        </div>
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Nisarg_Parashar.jpeg' %}" alt="Nisarg Parashar"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">Turning data into financial insights.</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Nisarg Parashar</h3>
+        </div>
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Sanchit_Singla.jpg' %}" alt="Sanchit Singla"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">Naahhh!! can't think</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Sanchit Singla</h3>
+        </div>
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Sarthak_Gupta.jpg' %}" alt="Sarthak Gupta"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">Mildly obsessed with money</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Sarthak Gupta</h3>
+        </div>
+        
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Shathradu_S_S.png' %}" alt="Shathadru S S"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">Loren Ipsum</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Shathadru S S</h3>
+        </div>
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Shlesha_Chawla.jpg' %}" alt="Shlesha Chawla"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">Let Your Portfolio Breathe Smarter</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Shlesha Chawla</h3>
+        </div>
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Shreya_Astha.jpg' %}" alt="Shreya Astha"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">why be a smart fella when you can be a fart smella</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Shreya Astha</h3>
+        </div>
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Siddhima.jpg' %}" alt="Siddhima"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">hehe</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Siddhima</h3>
+        </div>
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Sthit_Pragye.jpeg' %}" alt="Sthit Pragye"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">naam banta hai risk se</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Sthit Pragye</h3>
+        </div>
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Varun_Agrawal.jpg' %}" alt="Varun Agrawal"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">Finhead that got buzzed after Round2</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Varun Agrawal</h3>
+        </div>
+        
+        <div class="group text-center transform transition-transform duration-300 hover:scale-105">
+            <div class="relative w-48 h-60 mx-auto rounded-2xl shadow-lg overflow-hidden">
+                <img src="{% static 'images/Vedika_Yadav.jpg' %}" alt="Vedika Yadav"
+                    class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="text-white text-sm px-4">Translating HERP & HRC insights into smarter portfolios</p>
+                </div>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-gray-900">Vedika Yadav</h3>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,148 @@
+{% extends 'optimizer/base.html' %}
+
+{% block title %}Portfolio Optimizer | PORTFOLIO PRO{% endblock %}
+
+{% block content %}
+<div class="mb-10 text-center">
+    <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+        Portfolio Optimizer
+    </h1>
+    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
+        Follow the steps below to upload your data, select a model, and calculate your optimal portfolio allocation.
+    </p>
+</div>
+
+<div x-data="{
+    fileName: '',
+    isUploading: false,
+    handleFileSelect(event) {
+        if (event.target.files.length > 0) {
+            this.fileName = event.target.files[0].name;
+        } else {
+            this.fileName = '';
+        }
+    },
+    handleSubmit() {
+        // We will check the file input directly before submitting
+        const fileInput = $refs.fileInput;
+        if (fileInput && fileInput.files.length > 0) {
+            this.isUploading = true;
+        } else {
+            // Optional: You could add an alert here if you want to prevent submission without a file
+            // For now, we let Django's form validation handle it.
+        }
+    }
+}" class="space-y-8">
+
+    <form method="post" enctype="multipart/form-data" @submit="handleSubmit" class="rounded-2xl border border-white/10 bg-black/20 p-8 backdrop-blur-lg">
+        {% csrf_token %}
+        <div class="space-y-12">
+
+            <div>
+                <h2 class="text-2xl font-semibold text-white flex items-center">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-500/30 text-indigo-200 font-bold mr-4">1</span>
+                    Upload Asset Returns
+                </h2>
+                <p class="mt-2 text-gray-400 ml-12">Drag and drop or select a CSV file to begin.</p>
+                <div class="mt-4 ml-12">
+                    <div
+                        x-on:drop.prevent="
+                            $refs.fileInput.files = $event.dataTransfer.files;
+                            handleFileSelect({ target: $refs.fileInput });
+                        "
+                        x-on:dragover.prevent
+                        class="relative flex justify-center w-full px-6 pt-5 pb-6 border-2 border-dashed rounded-lg border-gray-500 hover:border-indigo-400 transition-colors"
+                    >
+                        <div class="space-y-1 text-center">
+                            <svg class="w-12 h-12 mx-auto text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                            <div class="flex text-sm text-gray-400">
+                                <label for="{{ form.returns_file.id_for_label }}" class="relative font-medium text-indigo-400 bg-gray-900 rounded-md cursor-pointer hover:text-indigo-300 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 focus-within:ring-offset-gray-900">
+                                    <span>Upload a file</span>
+                                    <input id="{{ form.returns_file.id_for_label }}" name="{{ form.returns_file.name }}" type="file" class="sr-only" x-ref="fileInput" @change="handleFileSelect($event)">
+                                </label>
+                                <p class="pl-1">or drag and drop</p>
+                            </div>
+                            <p class="text-xs text-gray-500">{{ form.returns_file.help_text }}</p>
+                            <p x-show="fileName" class="text-sm text-green-400 pt-2" x-text="`Selected: ${fileName}`" style="display: none;"></p>
+                        </div>
+                    </div>
+                     {% for error in form.returns_file.errors %}
+                        <p class="text-red-400 text-sm mt-2 ml-1">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-semibold text-white flex items-center">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-500/30 text-indigo-200 font-bold mr-4">2</span>
+                    Select Optimization Model
+                </h2>
+                <div class="mt-4 ml-12">
+                    {{ form.model_choice }}
+                </div>
+                {% for error in form.model_choice.errors %}
+                    <p class="text-red-400 text-sm mt-2 ml-12">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-semibold text-white flex items-center">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-500/30 text-indigo-200 font-bold mr-4">3</span>
+                    Generate Results
+                </h2>
+                <div class="mt-4 ml-12">
+                     <button type="submit" :disabled="isUploading" class="inline-flex items-center justify-center rounded-lg border border-transparent bg-gradient-to-r from-indigo-600 to-purple-600 py-3 px-6 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg hover:shadow-indigo-500/40 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50 disabled:scale-100">
+                        <svg x-show="isUploading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span x-text="isUploading ? 'Optimizing...' : 'Optimize Portfolio'"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {% if error_message %}
+        <div class="rounded-lg bg-red-500/20 border border-red-500 text-red-300 px-6 py-4" role="alert">
+            <strong class="font-bold">An Error Occurred!</strong>
+            <p class="mt-1">{{ error_message }}</p>
+        </div>
+    {% endif %}
+
+    {% if optimization_results %}
+    <div class="space-y-8">
+        <div class="rounded-2xl border border-white/10 bg-black/20 p-6 sm:p-8 backdrop-blur-lg">
+            <h3 class="text-2xl font-semibold text-white mb-4">Optimization Results</h3>
+            <style>
+                .dataframe { width: 100%; border-collapse: collapse; color: #d1d5db; }
+                .dataframe th { background-color: rgba(75, 85, 99, 0.5); padding: 0.75rem; text-align: left; font-weight: 600; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+                .dataframe td { padding: 0.75rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+                .dataframe tbody tr:last-child td { border-bottom: none; }
+                .dataframe tbody tr:hover { background-color: rgba(255, 255, 255, 0.05); }
+            </style>
+            <div class="overflow-x-auto">
+                 {{ optimization_results|safe }}
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {% if dendrogram_image %}
+            <div class="rounded-2xl border border-white/10 bg-black/20 p-6 backdrop-blur-lg">
+                <h3 class="text-xl font-semibold text-white mb-4">Dendrogram (HRP/HERC)</h3>
+                <img src="data:image/png;base64,{{ dendrogram_image }}" alt="Dendrogram" class="rounded-lg shadow-lg" />
+            </div>
+            {% endif %}
+            {% if quasi_diag_image %}
+            <div class="rounded-2xl border border-white/10 bg-black/20 p-6 backdrop-blur-lg">
+                <h3 class="text-xl font-semibold text-white mb-4">Quasi-Diagonalized Covariance Matrix</h3>
+                <img src="data:image/png;base64,{{ quasi_diag_image }}" alt="Quasi-Diagonal Matrix" class="rounded-lg shadow-lg" />
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}
