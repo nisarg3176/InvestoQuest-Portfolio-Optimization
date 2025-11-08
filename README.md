@@ -50,7 +50,7 @@ Adaptive rebalancing with lower transaction costs
 
 Report
 
-See full documentation in \[`FAC\_Report.pdf`](./FAC\_Report.pdf)
+See full documentation in \[`FAC_Report.pdf`](FAC_Report.pdf)
 
 
 
