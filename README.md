@@ -1,4 +1,4 @@
-\# 📊 InvestoQuest – Portfolio Optimization \& Management
+\# InvestoQuest – Portfolio Optimization \& Management
 
 
 
@@ -12,7 +12,7 @@ It includes \*\*Python-based analytics\*\*, \*\*transaction cost modeling\*\*, a
 
 
 
-\## 🚀 Features
+\##  Features
 
 \- Efficient Frontier Visualization (MPT)
 
