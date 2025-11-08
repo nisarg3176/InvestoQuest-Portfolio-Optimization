@@ -129,3 +129,12 @@ websocket-client==1.9.0
 websockets==15.0.1
 xlsxwriter==3.2.9
 yfinance==0.2.66
+numpy
+pandas
+matplotlib
+scipy
+riskfolio-lib
+yfinance
+django
+seaborn
+jupyterlab

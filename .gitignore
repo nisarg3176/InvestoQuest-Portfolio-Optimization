@@ -1,7 +1,43 @@
-venv/
-db.sqlite3
+# === PYTHON CACHE / BYTECODE ===
 __pycache__/
+*.py[cod]
+*$py.class
+
+# === JUPYTER NOTEBOOKS ===
 .ipynb_checkpoints/
-.vscode/
-.DS_Store
+
+# === VIRTUAL ENVIRONMENTS ===
+venv/
 .env/
+.venv/
+ENV/
+
+# === DJANGO PROJECT FILES ===
+*.log
+db.sqlite3
+media/
+staticfiles/
+
+# === OS FILES ===
+.DS_Store
+Thumbs.db
+
+# === IDE FILES ===
+.vscode/
+.idea/
+
+# === PACKAGING / DISTRIBUTION ===
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
