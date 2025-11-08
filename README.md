@@ -1,4 +1,4 @@
-\# 📊 InvestoQuest – Portfolio Optimization \& Management
+\# InvestoQuest – Portfolio Optimization \& Management
 
 
 
